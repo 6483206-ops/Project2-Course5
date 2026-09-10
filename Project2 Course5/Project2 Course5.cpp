@@ -6,12 +6,14 @@
 #include <ctime>
 
 using namespace std;
+
+
 enum enQLevel { Easy = 1, Med = 2, Hard = 3, Mix = 4 };
 enum enOTybe { Add = 1, Sub = 2, Mul = 3, Div = 4, Mix = 5 };
-struct stRoundInfo {
-    int NumOfQuestion;
-    enQLevel QuestionLevel;
-    enOTybe OperationTybe;
+
+struct stQInfo {
+    int NumTheQuestion;
+    bool Result;
 };
 struct stGameInfo {
     int NumOfQuestion;
@@ -19,7 +21,48 @@ struct stGameInfo {
     enOTybe OperationTybe;
     int NumOfRigthAnswer;
     int NumOfWrongAnswer;
+    bool Result;
 };
+
+
+
+
+int AskTheUserForTheQuestion() {}
+
+void ReadQuestionInfo (int RoundNum,stQInfo &Round) {}
+
+void StartTheQuestion(int RoundNum, stQInfo Round) {
+
+}
+
+void  ResultOfTheQuestion(int RoundNum, stQInfo Round) {}
+
+void ReadGameInfo (stGameInfo Game) {}
+
+stGameInfo ResultOfTheGame(stGameInfo Game) {};
+
+bool reStartTheGame() {}
+
+void StartTheGame() {
+    do {
+        system("cls");
+        system("color F0");
+        stGameInfo GameInfo = {};
+        int TotalQ = AskTheUserForTheQuestion();
+        for (int QNum = 1; QNum <= TotalQ; QNum++) {
+            stQInfo QInfo = {};
+
+            ReadQuestionInfo(QNum, QInfo);
+            StartTheQuestion(QNum, QInfo);
+            ResultOfTheQuestion(QNum, QInfo);
+        }
+
+        ReadGameInfo(GameInfo);
+        ResultOfTheGame(GameInfo);
+
+    }while(reStartTheGame());
+}
+
 
 int main()
 {
