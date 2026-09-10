@@ -6,6 +6,20 @@
 #include <ctime>
 
 using namespace std;
+enum enQLevel { Easy = 1, Med = 2, Hard = 3, Mix = 4 };
+enum enOTybe { Add = 1, Sub = 2, Mul = 3, Div = 4, Mix = 5 };
+struct stRoundInfo {
+    int NumOfQuestion;
+    enQLevel QuestionLevel;
+    enOTybe OperationTybe;
+};
+struct stGameInfo {
+    int NumOfQuestion;
+    enQLevel QuestionLevel;
+    enOTybe OperationTybe;
+    int NumOfRigthAnswer;
+    int NumOfWrongAnswer;
+};
 
 int main()
 {
