@@ -24,20 +24,59 @@ struct stGameInfo {
     bool Result;
 };
 
+int RandomNumper(int From, int To) {
+    int num;
+    num = rand() % (To - From + 1) + From;
+    return num;
+}
+
+string TransToQL(int num) {
+    string arr[5] = { "Easy","Med","Hard","Mix" };
+    return arr[num];
+}
+
+string TransToOT(int num) {
+    string arr[6] = { "Add", "Sub", "Mul", "Div", "Mix" };
+    return arr[num];
+}
+
+int AskTheUserForTheQuestion() {
+    cout << "How many Question do you want to answer ? ";
+    int n; cin >> n;
+    return n;
+}
+
+enQLevel AskTheUserForQLevel() {
+    int n;
+    cout << "Enter Question Level [1]Easy, [2]Med, [3]Hard, [4]Mix ? ";
+    cin >> n;
+    return (enQLevel)n;
+
+}
+
+enOTybe AskTheUserForOT() {
+    int n;
+    cout << "Enter Operation Tybe [1]Add, [2]Sub, [3]Mul, [4]Div, [5]Mix ? ";
+    cin >> n;
+    return (enOTybe)n;
+}
 
 
 
-int AskTheUserForTheQuestion() {}
+void StartTheQuestion(stGameInfo Game, int QNum) {
+    cout << "Question " << "[" << QNum << "/" << Game.NumOfQuestion << "]" << endl;
+    cout << "\n\n";
 
-void ReadQuestionInfo (int RoundNum,stQInfo &Round) {}
-
-void StartTheQuestion(int RoundNum, stQInfo Round) {
 
 }
 
 void  ResultOfTheQuestion(int RoundNum, stQInfo Round) {}
 
-void ReadGameInfo (stGameInfo Game) {}
+void ReadGameInfo (stGameInfo &Game) {
+    Game.NumOfQuestion = AskTheUserForTheQuestion();
+    Game.QuestionLevel = AskTheUserForQLevel();
+    Game.OperationTybe = AskTheUserForOT();
+}
 
 stGameInfo ResultOfTheGame(stGameInfo Game) {};
 
@@ -48,16 +87,13 @@ void StartTheGame() {
         system("cls");
         system("color F0");
         stGameInfo GameInfo = {};
-        int TotalQ = AskTheUserForTheQuestion();
-        for (int QNum = 1; QNum <= TotalQ; QNum++) {
-            stQInfo QInfo = {};
-
-            ReadQuestionInfo(QNum, QInfo);
-            StartTheQuestion(QNum, QInfo);
+        ReadGameInfo(GameInfo);
+        for (int QNum = 1; QNum <= GameInfo.NumOfQuestion; QNum++) {
+           
+            StartTheQuestion(GameInfo, QNum);
             ResultOfTheQuestion(QNum, QInfo);
         }
 
-        ReadGameInfo(GameInfo);
         ResultOfTheGame(GameInfo);
 
     }while(reStartTheGame());
